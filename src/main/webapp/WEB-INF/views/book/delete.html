@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/book/layout::head">
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+<h1>Are you sure ?</h1>
+<h3><a th:href="@{/book}">No i'm not</a></h3>
+<div>
+    <form th:action="@{/book/delete}"  th:method="post">
+        <input type="hidden" th:value="*{id}" name="id">
+        <table>
+            <tr>
+                <th>Book Name:</th>
+                <td th:text="*{book.name}"></td>
+            </tr>
+            <tr>
+                <th>Price:</th>
+                <td th:text="${book.price}"></td>
+            </tr>
+            <tr>
+                <th>Author:</th>
+                <td th:text="${book.author}"></td>
+            </tr>
+            <tr>
+                <th>Category:</th>
+                <td th:text="${book.category.name}"></td>
+            </tr>
+            <tr>
+                <th>Image:</th>
+                <td><img th:src="@{'/image/' + ${book.image}}" width="100" alt="broken"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Delete"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+<footer th:replace="/book/layout::footer"></footer>
+</html>
